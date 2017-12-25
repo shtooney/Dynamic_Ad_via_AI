@@ -1,0 +1,6 @@
+<design:component>
+    <design:attribute name="noRenewalRisk" label="Upsell Ad (no renewal risk)"></design:attribute>	
+    <design:attribute name="URLnoRenewalRisk" label="Upsell Ad URL"></design:attribute>	    
+    <design:attribute name="renewalRisk" label="Lower Premium Ad (due to renewal risk)"></design:attribute>	
+	<design:attribute name="URLrenewalRisk" label="Lower Premium Ad URL"></design:attribute>	
+</design:component>
