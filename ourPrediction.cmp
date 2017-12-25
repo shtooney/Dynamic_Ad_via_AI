@@ -1,0 +1,25 @@
+<aura:component controller="PredictionController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:attribute name="myOutputs" type="String" />
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="noRenewalRisk" type="String" ></aura:attribute>
+    <aura:attribute name="URLnoRenewalRisk" type="String" ></aura:attribute>
+    <aura:attribute name="renewalRisk" type="String" ></aura:attribute>
+    <aura:attribute name="URLrenewalRisk" type="String" ></aura:attribute>
+    
+    <aura:attribute name="myRenewalRiskURL" type="String" default="{!v.URLnoRenewalRisk}"/>
+    <aura:attribute name="myNoRenewalRiskURL" type="String" default="{!v.URLrenewalRisk}"/>
+
+
+    <aura:iteration items="{!v.myOutputs}" var="myOutput" indexVar="index">
+        <aura:if isTrue="{! index == 0 }">
+            <aura:if isTrue="{!equals(myOutput.Info__c,'No Renewal Risk')}">
+                <div class="slds-text-heading_large" style="background-color:#bbff99;"><center><ui:outputURL value="{!v.myRenewalRiskURL}" label="{!v.noRenewalRisk}"/></center></div>
+            </aura:if>
+            <aura:if isTrue="{!equals(myOutput.Info__c,'Renewal Risk!')}">
+                <div class="slds-text-heading_large" style="background-color:#ff99c2;"><center><ui:outputURL value="{!v.myNoRenewalRiskURL}" label="{!v.renewalRisk}"/></center></div>
+            </aura:if>
+        </aura:if>
+    </aura:iteration>
+    
+</aura:component>
