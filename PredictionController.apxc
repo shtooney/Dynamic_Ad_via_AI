@@ -1,0 +1,23 @@
+public class PredictionController {
+    @AuraEnabled
+    
+	//Return is a Temp__c object - will clean this up later to return a boolean or string value/etc
+    public static List<Temp__c> getMyId(Id myId){
+        Decimal PredictionScore = [SELECT Id, Discovery_Outcome__c FROM Contact WHERE Id = :myId LIMIT 1].get(0).Discovery_Outcome__c;
+        System.debug(PredictionScore);
+
+        String myInfo = '';
+        
+        if(PredictionScore < 50){
+            myInfo = 'Renewal Risk!';
+        } else if (PredictionScore >= 50){
+            myInfo = 'No Renewal Risk';
+        }
+        
+        //Will clean this up later to return a boolean or string value/etc
+        List<Temp__c> myList = new List<Temp__c>();
+        Temp__c t = new Temp__c(Info__c = myInfo);
+        myList.add(t);
+        return myList;
+    }
+}
